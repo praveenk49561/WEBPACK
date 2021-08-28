@@ -1,0 +1,17 @@
+{
+  "name": "webpack-learn",
+  "private": "true",
+  "version": "1.0.0",
+  "description": "Learning Phase Webpack",
+  "main": "index.js",
+  "scripts": {
+    "test": "webpack"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.51.1",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.0.0"
+  }
+}

@@ -1,0 +1,58 @@
+// WEBPACK LEARNING PHASE
+
+STEP 1: Intitialize NPM
+        # (cmd -) npm init
+        # Enter Details For Initialization
+        # Add "private": "true" In package.json To Not To Publish In NPM
+
+STEP 2: Install Wepack Dev Dependencies
+        # (cmd -) npm install --save-dev webpack webpack-cli webpack-dev-server
+        # webpack ~ JS Bundler Dependency
+        # webpack-cli ~ JS Bundler Command Line Interface
+        # webpack-dev-server ~ JS Bundler Dev Server
+
+STEP 3: Creation Of "index.js" In (src) Directory
+        # Create "index.js" In (src) Directory (~REASON: as Webpack by default look for index.js in src directory for entry point)
+
+STEP 4: Creation Of index.html In (public) Directory
+        # Create index.html In (public) Directory (~REASON: as Webpack will emit bundled script file, which as to be added in html's src tag)
+
+STEP O: SAMPLE CHECK
+        # Write Some Function in "./src/index.js" File
+        # Add Key Pair "test: webpack" as NPM CLI CMD in "./package.json" file
+        # (cmd -) npm test (~REASON: now webpack will emit bundled js file in dist folder)
+        # Add Script Tag With Src as "./dist/main.js" (~REASON: manually adding bundled script file to html)
+
+STEP 5: Create webpack.config.js File
+        # Create "webpack.config.js" In Main Directory
+
+~~~~~~~~CORE CONCEPTS OF WEBPACK~~~~~~~~~~
+@URL      : https://webpack.js.org/concepts/
+
+~~ENTRY  :
+         # Its The Entry Ponit Where The Webpack Takes The JS (Script) File To Proceed Its Bundling Procees
+
+~~OUTPUT :
+         # Its The Ouptut Point Where The Webpack Emitts The Bundled JS (Script) File After Its Bundling Process
+
+~~LOADERS:
+         # Out Of The Box, Webpack Only Understands JavaScript And Json Files
+         # And To Make Webpack Understand More Files (Eg: jpeg, pdf, css, scss and etc), Loaders (Eg: css-Loader, file-loader and etc), 
+         Have To Be Used
+~~PLUGINS: 
+         # It Can Be Used To Lift The Webpack's Bundling Process To Next Level
+         # Eg: ~ htmlWebpackPlugin to create a root html with script tag's src as bundled (script) file in compile time.
+               ~ esLintWebpackPlugin Helps the JavaScript's programming codes to meet ES Standard.
+~~MODE   :
+         # Mode Parameter Is To Used Set Default Optimization, That Webpack Has.
+         # Mode Key Takes Values As Stings: 
+         ~~'development' : to get development optimizations, 
+         ~~'production'  : to get production optimizations,
+         ~~'none'        : to opt no default optimizations.
+         # By setting the mode parameter to either development, production or none, you can enable webpack's built-in optimizations that
+         correspond to each environment. The default value is production.
+
+~~Browser Compatibility :
+         # Webpack supports all browsers that are ES5-compliant (IE8 and below are not supported). 
+         # Webpack needs Promise for import() and require.ensure(). 
+         # If you want to support older browsers, you will need to load a polyfill before using these expressions

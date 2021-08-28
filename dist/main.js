@@ -1,0 +1,1 @@
+(()=>{let e,n=0,t=document.getElementById("root"),l=document.createElement("div");t.appendChild(l);let c=document.createElement("button");c.innerHTML="ON",c.onclick=function(){e=setInterval((()=>{n+=1,l.innerText=n}),1e3)};let d=document.createElement("button");d.innerHTML="OFF",d.onclick=function(){clearInterval(e)},t.appendChild(c),t.appendChild(d)})();
