@@ -1,28 +1,17 @@
-let x = 0;
-let interval;
-let rootElement = document.getElementById('root');
-let numElement = document.createElement('div');
-rootElement.appendChild(numElement);
+import add from './add';
+import img from '../public/assets/img1.jpg?loadAsBase64';
+import texts from  '../public/assets/Last Checked.txt?loadAsBase64';
 
-function onClickOn() {
-    interval = setInterval(() => {
-        x += 1;
-        numElement.innerText = x;
-    }, 1000);
-}
 
-function onClickOff() {
-    clearInterval(interval);
-}
+const rootElement = document.getElementById('root');
+let newDiv = document.createElement('div');
+newDiv.innerHTML = 'Hello World (Index.js) + hotChunkCheck' + ' Add#' + add(3,5);
+console.log(window);
+// console.log(texts.split(' ').filter((e) => e.includes('ECS')).length);
+console.log(texts);
 
-let buttonElementOn = document.createElement('button');
-buttonElementOn.innerHTML = 'ON';
-buttonElementOn.onclick = onClickOn;
+let newImgTag = document.createElement('img');
+newImgTag.src = img;
 
-let buttonElementOff = document.createElement('button');
-buttonElementOff.innerHTML = 'OFF';
-buttonElementOff.onclick = onClickOff;
-
-rootElement.appendChild(buttonElementOn);
-rootElement.appendChild(buttonElementOff);
-
+window.appLib.default(newImgTag, rootElement);
+window.appLib.default(newDiv, rootElement);

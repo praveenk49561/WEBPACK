@@ -1,0 +1,83 @@
+fagad40376@decorbuz.com Test Analyst One
+kefabay317@cantouri.com Test QA One
+pehaso1046@ergowiki.com Test Group Admin One
+wawovev584@carpetd.com Test Company Rep Nexs B
+cararox697@ergowiki.com Test Client Rep Nexs B
+habas41395@jesdoit.com Client
+
+
+CLIENT TEST
+nefibe4380@ergowiki.com (Balaji SV) - Analyst
+jomeger753@ergowiki.com (Rajesh SV) - Analyst
+petagi1508@cantouri.com (Jerin VS) - QA
+depot26415@carpetd.com (Gopi CH) - QA
+
+DEV - ENV
+newqa@indiumsoft.com
+newanalyst@indiumsoft.com
+newanalyst2@indiumsoft.com	
+
+04-10-2021
+30 mins - StandUp
+20 mins - Client
+10 mins - FrontEnd
+45 mins - Internal Call - discussion
+30 mins - Priority Bug (Fixed, validated, Pushed)
+2 hrs - Login Password validation (Fixed, validated, Pushed)
+2 hrs - Intergration Testing
+
+yowowaj616@jesdoit.com (Aone)
+----------------------------------------------------------------------------------------------------
+BUGS/CHANGES/ISSUES FIXED (SPRINT 1) :
+ECS - 213
+ECS - 231
+ECS - 272
+ECS - 266
+ECS - 295
+ECS - 299
+ECS - 309
+ECS - 310
+ECS - 274
+ECS - 327
+ECS - 286
+ECS - 338
+ECS - 374
+ECS - 284
+ECS - 340
+PENDING:
+ECS - 292 - dependent
+ECS - 275 - Lowest Priority
+----------------------------------------------------------------------------------------------------
+BUGS/CHANGES/ISSUES FIXED (SPRINT 2) :
+ECS - 388 - 16hrs
+ECS - 350 - 5hrs
+ECS - 353 - 7hrs
+ECS - 355 - 5hrs
+ECS - 364 - 4hrs
+ECS - 392 - 4hrs
+ECS - 362
+ECS - 362 Seperated (28-10-2021) :
+-> QA Should Consist Same Validation Screen As Analyst Have - 9 hrs
+-> Add Comment Box To All DepCodes That Are Marked As Failure in Analyst && QA - 7 hrs
+-> Api Intergration - 7 hrs
+
+----NOT IN JIRA---
+Status Should be Removed From Client & Company Rep Screen (29-10-2021) - 3hr
+SCREENSHOT UNIT TEST - WITH BACKEND - 5hr
+----------------------------------------------------------------------------------------------------
+TASK INDEX JS Replace 700 with 699 and 690 with 689
+1, ScreenShot Changes, 2, Status Removal For Client/Company Rep 3, ECS - 392, 4, ECS - 362 FRONENT PART
+----------------------------------------------------------------------------------------------------
+BUGS/CHANGES/ISSUES FIXED (SPRINT 3) :
+
+ECS - 408 - 34hrs
+- Pending Tasks Page - 5hrs
+- Tasks Page - 5hrs
+- Controversy Page - 5hrs
+- Controversy Data Collection - 10hrs
+- API Intergration - 9hrs
+
+ECS - 323 - 29hrs
+- Design UI - 8hrs
+- Make Errors Available Beside comment to which analyst replied - 14
+- Api Intergration - 7hrs

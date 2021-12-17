@@ -5,7 +5,8 @@
   "description": "Learning Phase Webpack",
   "main": "index.js",
   "scripts": {
-    "test": "webpack"
+    "test": "webpack --mode=development",
+    "start": "webpack serve --mode=development --open --hot"
   },
   "author": "",
   "license": "ISC",
