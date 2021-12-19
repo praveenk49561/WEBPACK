@@ -47,17 +47,31 @@ const configObj = {
             //     type: 'asset/resource',
             // }
             {
-                test: /\.(txt|jpg)$/i,
-                type: 'asset/source',
+                test: /\.(jpg|txt)$/i,
+                oneOf: [
+                    {
+                        resourceQuery: (q) => {
+                            console.log('++QUERY++', q);
+                            return /loadAsBase64/.test(q);
+                        },
+                        type: 'asset/inline',
+                    },
+                    {
+                        test: /\.(txt|jpg)$/i,
+                        type: 'asset/source',
+                    }
+                ]
             },
             {
-                test: /\.(jpg|txt)$/i,
-                resourceQuery: (q) => {
-                    console.log('++QUERY++', q);
-                    return /loadAsBase64/.test(q);
+                test: (nn) => {
+                    console.log("TEST", /\.js$/i.test(nn), nn);
+                    return /\.js$/i.test(nn);
                 },
-                type: 'asset/inline',
-            },
+                use: (info) => {
+                    console.log('INFO', info);
+                    return [];
+                }
+            }
         ]
     }
     };

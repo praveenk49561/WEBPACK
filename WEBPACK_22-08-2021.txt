@@ -647,5 +647,167 @@ STEP 8:  Webpack Configuration Options
                                                         ~ This option is same as resource, but it will check for issuer.
                                                         ~ Issuer means the module that requests the resource.
 
-                                -> 
+                                                        (My Understanding) : 
+                                                                -> Here we have to give a condition to check for issuer.
+                                                                -> This option will act as a another condition, it andition to rule.test or rule.resource.
+                                                                -> This can be used if need to import .jpg (is of resource type) and load it in base64 format to only for ImgViewer.js (is of issuer type)
+                                                                then below eg can be used:
+
+                                                                Eg: {
+                                                                        resource: /.jpg$/,
+                                                                        issuer: /^ImgViewer.js$/,
+                                                                        type: 'asset/resource/,
+                                                                }
+
+                                -> include (rule.include) : 
+                                                -> Include all modules matching any of these conditions. 
+                                                -> If you supply a Rule.include option, you cannot also supply a Rule.resource.
+
+                                                ( My Understandings ) : In here we have to give conditon. with this webpack only includes
+                                                those module matched against the given conditon.
+
+                                                Eg: {
+                                                        test: /\.js$/,
+                                                        include: [path.resolve(__dirname, 'src', 'containers')],
+                                                        type: 'javascript/auto'
+                                                }
+
+                                                In above example include is used in addtion to test, to get modules that are of js type and 
+                                                available in path __dirname/src/containers.
+
+                                                Then it apply loader of type javascript/auto to it.
            
+                                -> exclude (rule.exclude) : 
+                                                -> exclude all modules matching any of these conditions. 
+                                                -> If you supply a Rule.exclude option, you cannot also supply a Rule.resource.
+
+                                                ( My Understandings ) : In here we have to give conditon. with this webpack only includes
+                                                those module that not matched against the given conditon.
+
+                                                Eg: {
+                                                        test: /\.js$/,
+                                                        exclude: [path.resolve(__dirname, 'src', 'containers')],
+                                                        type: 'javascript/auto'
+                                                }
+
+                                                In above example exclude is used in addtion to test, with help of this condtion, webpack exclude modules that are of js type and 
+                                                available in path __dirname/src/containers.
+
+                                                Then it apply loader of type javascript/auto to non excluded file.
+
+                                                As name given, it will exclude modules that are matched against this conditon.
+
+                                -> oneOf (rule.oneOf) : 
+                                                -> An array of Rules from which only the first matching Rule is used when the Rule matches.
+
+                                                ( My Understandings ):
+                                                                -> When Can we use this ?. 
+                                                                -> For Example if we have to load .jpg (is of type resource) with two different loaders,
+                                                                then in this situation we can use rule.oneOf.
+                                                                -> Simply, in a rule object, it should have one initial conditon to match againt a module.
+                                                                -> then by using rule.oneOf, we can give an array of rule object and its loaders.
+                                                                -> as shown below.
+
+                                                                Eg: {
+                                                                        test: /\.jpg$/,
+                                                                        oneOf:[
+                                                                                {
+                                                                                        resourceQuery: /loadAsBase64/,
+                                                                                        type: 'asset/inline'
+                                                                                },
+                                                                                {
+                                                                                        resourceQuery: /emitFileAndAddSrc/,
+                                                                                        type: 'asset/resource',
+                                                                                }
+                                                                        ]
+                                                                }
+
+                                -> type (rule.type) :
+                                                -> Possible Values: 'javascript/auto' | 'javascript/dynamic' | 'javascript/esm' | 'json' |
+                                                'webassembly/sync' | 'webassembly/async' | 'asset' | 'asset/source' |
+                                                'asset/resource' | 'asset/inline'
+
+                                                ->Rule.type sets the type for a matching module. 
+                                                ->This prevents defaultRules and their default importing behaviors from occurring.
+
+                                                NOTE: By default webpack only know to parse javascript (default type is javascript/auto) and
+                                                      json(default type is json) files.
+                                                
+                                                ( My Understandings ) : 
+                                                        -> In here we have to mention type of the module matched against given condtion.
+                                                        -> so that webpack can loads the module based on give type.
+
+                                                        -> javascript/auto: (The default one for js files) Javascript module with all module systems enabled: CommonJS, AMD, ESM
+                                                        -> javascript/esm: EcmaScript modules, all other module system are not available
+                                                        -> javascript/dynamic: Only CommonJS and, EcmaScript modules are not available
+                                                        -> json: (The Default one for json files) JSON data, it's available via require and import
+                                                        -> webassembly/experimental: WebAssembly modules (currently experimental)
+
+                                                        Asset Modules is a type of module that allows one to use asset files (fonts, icons, etc) without configuring additional loaders.
+
+                                                        Prior to webpack 5 it was common to use:
+
+                                                        -> raw-loader to import a file as a string
+                                                        -> url-loader to inline a file into the bundle as a data URI
+                                                        -> file-loader to emit a file into the output directory
+                                                        
+                                                        -> Asset Modules type replaces all of these loaders by adding 4 new module types:
+                                                        -> asset/resource emits a separate file and exports the URL. Previously achievable by using file-loader.
+                                                        -> asset/inline exports a data URI of the asset. Previously achievable by using url-loader.
+                                                        -> asset/source exports the source code of the asset. Previously achievable by using raw-loader.
+                                                        -> asset automatically chooses between exporting a data URI and emitting a separate file. Previously achievable by using url-loader with asset size limit.
+
+                                -> use (rule.use): [UseEntry] function(info)
+                                        -> Rule.use can be an array of UseEntry which are applied to modules. 
+                                        -> Each entry specifies a loader to be used.
+                                        -> Passing a string (i.e. use: [ 'style-loader' ]) is a shortcut to the
+                                        loader property (i.e. use: [ { loader: 'style-loader '} ]).
+                                        -> Loaders can be chained by passing multiple loaders,
+                                        which will be applied from right to left (last to first configured).
+                                        
+                                        function(info)
+
+                                        -> Rule.use can also be a function which receives the object argument describing the module being loaded, and must return an array of UseEntry items.
+                                        -> The info object parameter has the following fields:
+
+                                        -> compiler: The current webpack compiler (can be undefined)
+                                        -> issuer: The path to the module that is importing the module being loaded
+                                        -> realResource: Always the path to the module being loaded
+                                        -> resource: The path to the module being loaded, it is usually equal to realResource except when the resource name is overwritten via !=! in request string
+                                        -> The same shortcut as an array can be used for the return value (i.e. use: [ 'style-loader' ]).
+
+                                        ( My Understandings ): 
+                                                        -> The last part of the rule object is rule.use option.
+                                                        -> once if all the given condtions matches against the module.
+                                                        -> at last webpack do is apply loader to it.
+                                                        -> with the help rule.use option, we have to specify the array of loaders which can be applied to the
+                                                        module.
+                                                        -> Here we have to give an array of useEntry ( An object with loader & its options ) options or an function which should also return an array of useEntry.
+
+                                                        For Example: {
+                                                                test: /\.js$/,
+                                                                use: [useEntry, useEntry, useEntry],
+                                                        }
+
+                                                        For Example: {
+                                                                test: /\.js$/,
+                                                                use: (info) => {
+                                                                        return [useEntry, useEntry];
+                                                                }
+                                                        }
+                                                        
+                                                        -> IMPORTANT: useEntry is Explained below, please check !
+
+                                                        -> NOTE: rule.type and rule.use is almost same, if we specify rule.type after conditon, webpack
+                                                                 will apply its in-buit loader for that type.
+
+                                                                 If there are no in-buit loader type available for any module, then rule.use can be used to apply,
+                                                                 any third party loader.
+
+                                -> useEntry (rule.use: [useEntry]): Object, function(info)
+                                                -> Here we have to specify an object with loader and options as keys in it.
+                                                -> Or a function which should also return an object with loader and options as keys in it.
+                                                -> here in loader we have to specify the loader, which should be sholud be applied to the,
+                                                module matched againts a conditon.
+                                                -> here in option we have to provide required loader options available. ( which can obtained from loader docs ).
+                                                
